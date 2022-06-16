@@ -1,2 +1,3 @@
 # iProfiler
-Credit to SmartBrain App by ZTM
+
+Work in Progress, currently stuck in fetching clarifai API
