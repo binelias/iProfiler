@@ -1,0 +1,31 @@
+Creating a react app
+	npx create-react-app iprofiler
+	
+Building our components
+	nav component
+		logo
+		sign out/sign in
+	ranked component
+		username
+	input form
+	image component
+		image detection component
+
+Keywords
+	gRPC Remote Procedure Calls
+	gRPC (gRPC Remote Procedure Calls) is a modern open source high performance Remote Procedure Call (RPC) framework that can run in any environment.
+
+Reference
+	Clarifai-API
+		https://www.clarifai.com/
+		https://www.clarifai.com/models/ai-face-detection
+		https://github.com/Clarifai/clarifai-javascript#basic-use
+		https://www.clarifai.com/developers/pre-trained-models
+	React effect libraries
+		https://www.npmjs.com/package/react-tilt
+		https://www.npmjs.com/package/react-particles-js
+		https://www.npmjs.com/package/react-parallax-tilt
+		https://www.npmjs.com/package/react-tsparticles
+	Github finish app reference
+		Front end: https://github.com/aneagoie/face-recognition-brain
+		Back end: https://github.com/aneagoie/face-recognition-brain-api
