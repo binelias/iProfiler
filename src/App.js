@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navigation from './components/Navigation/Navigation';
+// import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
@@ -12,24 +12,27 @@ class App extends Component {
     super();
     this.state = {
       input: '',
-      imageUrl: '',
-      box: {},
+      box: [],
     }
   }
 
   calculateFaceLocation = (data) => {
-    const clarifaiFace = JSON.parse(data,null,2).outputs[0].data.regions[0].region_info.bounding_box;
-    // const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const faces = [];
     const image = document.getElementById("inputimage");
     const width = Number(image.width);
     const height = Number(image.height);
-    return {
+
+    for (let i = 0; i < JSON.parse(data).outputs[0].data.regions.length; i++) {
+    const clarifaiFace = JSON.parse(data).outputs[0].data.regions[i].region_info.bounding_box;
+    faces.push({
       leftCol: clarifaiFace.left_col * width,
       topRow: clarifaiFace.top_row * height,
       rightCol: width - (clarifaiFace.right_col * width),
       bottomRow: height - (clarifaiFace.bottom_row * height)
-    };
+    });
   }
+  return faces;
+}
 
   displayFaceBox = (box) => {
     this.setState({box: box}); 
@@ -42,34 +45,34 @@ class App extends Component {
 
   onButtonSubmit = () => {
     const raw = JSON.stringify({
-      user_app_id: {
-        user_id: "binelias",
-        app_id: "dc294004d3844cb5a11a8d0ab6fb252c"
+      "user_app_id": {
+        "user_id": "binray",
+        "app_id": "iProfiler"
       },
-      inputs: [
+      "inputs": [
         {
-          data: {
-            image: {
-              url: this.state.input
-            },
-          },
-        },
-      ],
+          "data": {
+            "image": {
+              "url": this.state.input
+            }
+          }
+        }
+      ]
     });
 
-    fetch(
-      "https://api.clarifai.com/v2/models/f76196b43bbd45c99b4f3cd8e8b40a8a/outputs",
-    {
+    const requestOptions = {
           method: "POST",
           headers: {
             Accept: "application/json",
-            Authorization: 'Key eff5029af1d94eb6aa9e19d10ca7a690'
+            Authorization: 'Key a13ffff405e243a99bde0d98a85e6170'
           },
-        }
-    )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((err) => console.log("error", err));
+          body:raw,
+        };
+    fetch("https://api.clarifai.com/v2/models/face-detection/versions/45fb9a671625463fa646c3523a3087d5/outputs", requestOptions)
+      .then(response => response.text())
+      .then(result => this.displayFaceBox(this.calculateFaceLocation(result)))
+      .catch(error => console.log("error", error));
+
   }
 
   // onRouteChange = (route) => {
@@ -82,7 +85,7 @@ class App extends Component {
   // }
 
   render() {
-    const { imageUrl, box } = this.state;
+    const { box } = this.state;
     return (
       <div className="App">
         <Logo />
@@ -93,7 +96,7 @@ class App extends Component {
         />
         <FaceRecognition 
         box= {box} 
-        imageUrl = {imageUrl} 
+        imageUrl = {this.state.input} 
         />
       </div>
     );

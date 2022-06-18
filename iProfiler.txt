@@ -29,3 +29,26 @@ Reference
 	Github finish app reference
 		Front end: https://github.com/aneagoie/face-recognition-brain
 		Back end: https://github.com/aneagoie/face-recognition-brain-api
+		
+Changes in original app made by ztm
+	move logo to align with signin/signout and add iProfiler text beside it
+	change code in fetching clarifai api
+		https://docs.clarifai.com/api-guide/predict/images
+		https://help.clarifai.com/hc/en-us/articles/1500007677141-Where-to-find-your-Model-IDs-and-Model-Version-IDs
+		https://beatriceebirim.hashnode.dev/how-to-call-the-clarifai-api-to-show-the-bounding-box-on-image
+		https://github.com/beattris/face-recognition/blob/main/src/App.js
+	fix feautures where only one face are detected by displayfacebox
+	made background white
+	use react router dom to route
+
+
+
+
+
+
+
+this.displayFaceBox(this.calculateFaceLocation(result))
+
+
+
+	
