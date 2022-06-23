@@ -5,12 +5,10 @@ import './Logo.css'
 
 const Logo = () => {
         return (
-            <div>
-                <nav className="ma4 mt0">
-                    <Tilt className="Tilt br2 shadow-2" style={{ height: 50, width: 50 }}>
-                    <div><img alt="logo" src={Face}/></div>
-                    </Tilt>
-                </nav>
+            <div className="ma4 mt0">
+                <Tilt className="Tilt br2 shadow-2" style={{ height: 50, width: 50 }}>
+                <div><img alt="logo" src={Face}/></div>
+                </Tilt>
             </div>
         )
 }

@@ -37,17 +37,22 @@ Changes in original app made by ztm
 		https://help.clarifai.com/hc/en-us/articles/1500007677141-Where-to-find-your-Model-IDs-and-Model-Version-IDs
 		https://beatriceebirim.hashnode.dev/how-to-call-the-clarifai-api-to-show-the-bounding-box-on-image
 		https://github.com/beattris/face-recognition/blob/main/src/App.js
+		done
 	fix feautures where only one face are detected by displayfacebox
+		done
 	made background white
+		done
 	use react router dom to route
+	when login,name is undefined and entries not shown but in register is working
+		res.json(database.users[0]);
+	const error = this._ending ? new Error('Connection terminated') : new Error('Connection terminated unexpectedly')
+		5432
+	throw new Error('SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string' when postman post into register
+		In your pg_hba.conf file (on Windows the directory is \Program Files\PostgreSQL\13\data) change IPv4 and IPv6 local connections' method to trust. The scram-sha-256 encryption mechanism expects a password which is why it fails
 
 
 
 
-
-
-
-this.displayFaceBox(this.calculateFaceLocation(result))
 
 
 
