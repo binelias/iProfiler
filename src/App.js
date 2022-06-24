@@ -43,7 +43,6 @@ class App extends Component {
     const image = document.getElementById("inputimage");
     const width = Number(image.width);
     const height = Number(image.height);
-
     for (let i = 0; i < JSON.parse(data).outputs[0].data.regions.length; i++) {
     const clarifaiFace = JSON.parse(data).outputs[0].data.regions[i].region_info.bounding_box;
     faces.push({
@@ -66,25 +65,41 @@ class App extends Component {
   }
 
   onButtonSubmit = () => {
-    fetch('http://localhost:3000/imageurl/', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        input: this.state.input
-      })
-    })
+    const raw = JSON.stringify({
+      "user_app_id": {
+          "user_id": "binray",
+          "app_id": "iProfiler"
+      },
+      "inputs": [
+          {
+              "data": {
+                  "image": {
+                  "url": this.state.input
+                  }
+              }
+          }
+      ]
+    });
 
-    .then(response => response.json())
+    fetch("https://api.clarifai.com/v2/models/face-detection/versions/45fb9a671625463fa646c3523a3087d5/outputs", {
+        method: "POST",
+        headers: {
+                Accept: "application/json",
+                Authorization: 'Key a13ffff405e243a99bde0d98a85e6170'
+            },
+            body:raw,
+    })
+    .then(response => response.text())
     .then(response => {
       if (response) {
-        fetch('http://localhost:3000/image', {
+        fetch('https://intense-river-81990.herokuapp.com/image/', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
             id: this.state.user.id
           })
         })
-        .then(response => { return response.json() })
+        .then(response => {return response.json()})
         .then(count => {
           this.setState(Object.assign(this.state.user, {entries: count}));
         });
