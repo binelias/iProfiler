@@ -1,3 +1,9 @@
 # iProfiler
 
-Work in Progress, currently stuck in fetching clarifai API
+open first the backend
+then in a new window for iprofiler
+
+npm install
+npm start
+
+
