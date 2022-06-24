@@ -66,31 +66,15 @@ class App extends Component {
   }
 
   onButtonSubmit = () => {
-    const raw = JSON.stringify({
-      "user_app_id": {
-          "user_id": "binray",
-          "app_id": "iProfiler"
-      },
-      "inputs": [
-          {
-              "data": {
-                  "image": {
-                  "url": this.state.input
-                  }
-              }
-          }
-      ]
-    });
-
-    fetch("https://api.clarifai.com/v2/models/face-detection/versions/45fb9a671625463fa646c3523a3087d5/outputs", {
-        method: "POST",
-        headers: {
-                Accept: "application/json",
-                Authorization: 'Key a13ffff405e243a99bde0d98a85e6170'
-            },
-            body:raw,
+    fetch('http://localhost:3000/imageurl/', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        input: this.state.input
+      })
     })
-    .then(response => response.text())
+
+    .then(response => response.json())
     .then(response => {
       if (response) {
         fetch('http://localhost:3000/image', {
