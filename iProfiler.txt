@@ -49,8 +49,22 @@ Changes in original app made by ztm
 		5432
 	throw new Error('SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string' when postman post into register
 		In your pg_hba.conf file (on Windows the directory is \Program Files\PostgreSQL\13\data) change IPv4 and IPv6 local connections' method to trust. The scram-sha-256 encryption mechanism expects a password which is why it fails
+	Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+		add procfile
+			web: node server.js
 
+Code Review
+	other user can see previous user image
+		make initial state and setState in logout onRoute
+	blank fill up can register and access homepage
+		if (!email || !name || !password) {
+			return res.status(400).json('Incorrect Submission');
+		}
+		add user.id in register onSubmitButton
+	browser can see the authorization and api key of your clarifai
+		move clarifai fetch to backend
 
+Security Review
 
 
 
